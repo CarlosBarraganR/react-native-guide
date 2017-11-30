@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, Button } from 'react-native';
 import Card from '../Card/Card';
 import CardSection from '../CardSection/CardSection';
 
@@ -18,6 +18,13 @@ const AlbumDetails = (props) => {
             </CardSection>
             <CardSection>
                 <Image style={styles.albumImageStyle} source={{url: props.album.image}}/>
+            </CardSection>
+            <CardSection>
+                <Button
+                    onPress={() => console.log('Pressed')}
+                    title="Learn More"
+                    accessibilityLabel="Learn more"
+                />
             </CardSection>
         </Card>
     );
