@@ -16,6 +16,9 @@ const AlbumDetails = (props) => {
                     <Text>{ props.album.artist }</Text>
                 </View>
             </CardSection>
+            <CardSection>
+                <Image style={styles.albumImageStyle} source={{url: props.album.image}}/>
+            </CardSection>
         </Card>
     );
 }
@@ -39,6 +42,11 @@ const styles = StyleSheet.create({
     headerTextStyle: {
         fontSize: 16,
         fontWeight: 'bold'
+    },
+    albumImageStyle: {
+        height: 300,
+        flex: 1,
+        width: null
     }
 });
 
