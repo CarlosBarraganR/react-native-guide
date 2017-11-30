@@ -2,11 +2,8 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
 const Card = (props) => {
-
-    const { cardStyle } = styles;
-
     return (
-        <View style={ cardStyle }>
+        <View style={ styles.cardStyle }>
             { props.children }
         </View>    
     );
