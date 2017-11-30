@@ -1,14 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from './src/components/Header/Header';
-import AlbumList from './src/components/AlbumList/AlbumList';
+import { StyleSheet, View } from 'react-native';
+import Header from './src/components/common/Header/Header';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Header title="Albums"/>
-        <AlbumList />
+        <Header title="Login"/>
       </View>
     );
   }
