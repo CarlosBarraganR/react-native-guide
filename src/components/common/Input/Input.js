@@ -2,7 +2,7 @@ import React from 'react';
 import {TextInput, Text, View, StyleSheet} from 'react-native';
 
 export default Input = (props) => {
-        return (
+    return (
         <View style={styles.containerStyle}>
             <Text style={styles.labelStyle}>{props.label}</Text>
             <TextInput
@@ -11,7 +11,7 @@ export default Input = (props) => {
                 placeholder={props.placeholder}
                 onChangeText={props.onChangeText}
                 autoCorrect={false}
-            />
+                secureTextEntry={props.secureTextEntry}/>
         </View>
     );
 }
