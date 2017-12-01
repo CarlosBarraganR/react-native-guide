@@ -11,6 +11,7 @@ export default Input = (props) => {
                 placeholder={props.placeholder}
                 onChangeText={props.onChangeText}
                 autoCorrect={false}
+                autoCapitalize="none"
                 secureTextEntry={props.secureTextEntry}/>
         </View>
     );
