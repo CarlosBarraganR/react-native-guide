@@ -46,7 +46,7 @@ class LoginForm extends Component {
         return <Button
                     onPress={this.logInFirebase.bind(this)}
                     title="Log In"
-                    accessibilityLabel="Learn more"/>
+                    accessibilityLabel="Log In"/>
         
     }
 
