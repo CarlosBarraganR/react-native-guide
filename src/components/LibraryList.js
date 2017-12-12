@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import {View, StyleSheet, FlatList, Text, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux';
 import * as actions from '../actions';
+import Content from './Content';
 
 class LibraryList extends Component {
+
     render() {
-        console.log(this.props);
+        //console.log(this.props);
+        let itemTest;
         return (
             <View style={styles.container}>
                 {/* New React Way to Declare a List */}
@@ -16,6 +19,7 @@ class LibraryList extends Component {
                     return (
                         <TouchableOpacity style={styles.item} onPress={() => this.props.selectLibrary(item.id)}>
                             <Text style={styles.text}>{item.id + 1}. {item.title}</Text>
+                            <Content library={item}/>
                         </TouchableOpacity>
                     );
                 }}/>
@@ -26,7 +30,9 @@ class LibraryList extends Component {
 }
 
 const mapStateToProps = state => {
-    return {libraries: state.libraries}
+    return { 
+        libraries: state.libraries
+    }
 }
 
 const styles = StyleSheet.create({
@@ -35,8 +41,7 @@ const styles = StyleSheet.create({
         paddingTop: 22
     },
     item: {
-        padding: 10,
-        height: 44
+        padding: 10
     },
     text: {
         fontSize: 18
