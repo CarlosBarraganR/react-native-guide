@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, LayoutAnimation } from 'react-native';
 import {connect} from 'react-redux';
+import CardSection from '../components/common/CardSection/CardSection';
 
 class Content extends Component { 
+
+    componentWillUpdate() {
+        LayoutAnimation.spring();
+    }
+
     render() {
         return (
-            <View>
+            <CardSection>
                 { 
                     this.props.expanded
                     ? <Text>{this.props.library.description}</Text> 
                     : null 
                 }
-            </View>
+            </CardSection>
         );
     }
 }
