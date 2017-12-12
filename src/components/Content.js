@@ -7,7 +7,7 @@ class Content extends Component {
         return (
             <View>
                 { 
-                    this.props.selectedLibraryId === this.props.library.id 
+                    this.props.expanded
                     ? <Text>{this.props.library.description}</Text> 
                     : null 
                 }
@@ -16,8 +16,11 @@ class Content extends Component {
     }
 }
 
-mapStateToProps = state => {
-    return { selectedLibraryId: state.selectedLibraryId }
+const mapStateToProps = (state, ownProps) => {
+
+    const expanded = state.selectedLibraryId === ownProps.library.id
+    return { expanded }
+
 }
 
 export default connect(mapStateToProps)(Content);
