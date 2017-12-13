@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from 'react-native';
+import {Button, Text} from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 import Card from '../components/common/Card/Card';
@@ -19,6 +19,10 @@ class LoginForm extends Component {
     onLoginUser(){
         const { email, pass } = this.props;
         this.props.loginUser({email, pass});
+    }
+
+    renderError(){
+        return this.props.error ? <Text>{this.props.error}</Text> : null
     }
 
     render() {
@@ -41,6 +45,7 @@ class LoginForm extends Component {
                 <CardSection>
                     <Button onPress={this.onLoginUser.bind(this)} title="Log in!"/>
                 </CardSection>
+                {this.renderError()}
             </Card>
         );
     }
@@ -49,7 +54,8 @@ class LoginForm extends Component {
 const mapPropsToState = (state) => {
     return {
         email: state.auth.email,
-        pass: state.auth.pass
+        pass: state.auth.pass,
+        error: state.auth.error
     };
 };
 
