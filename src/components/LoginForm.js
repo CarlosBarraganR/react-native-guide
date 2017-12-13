@@ -9,13 +9,16 @@ import Input from '../components/common/Input/Input';
 class LoginForm extends Component {
 
     onEmailChange(text) {
-        console.log(this.props.email);
         this.props.emailChanged(text);
     };
 
     onPassChange(text) {
-        console.log(this.props.pass);
         this.props.passChanged(text);
+    }
+
+    onLoginUser(){
+        const { email, pass } = this.props;
+        this.props.loginUser({email, pass});
     }
 
     render() {
@@ -36,7 +39,7 @@ class LoginForm extends Component {
                         onChangeText={this.onPassChange.bind(this)}/>
                 </CardSection>
                 <CardSection>
-                    <Button onPress={() => console.log(this.props)} title="Log in!"/>
+                    <Button onPress={this.onLoginUser.bind(this)} title="Log in!"/>
                 </CardSection>
             </Card>
         );
