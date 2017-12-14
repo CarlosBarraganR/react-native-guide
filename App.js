@@ -5,8 +5,7 @@ import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 import reducers from './src/reducers/index';
-import Header from './src/components/common/Header/Header';
-import LoginForm from './src/components/LoginForm';
+import Router from './src/Router';
 
 export default class App extends React.Component {
 
@@ -28,10 +27,7 @@ export default class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <View>
-          <Header title="Login "/>
-          <LoginForm />
-        </View>
+        <Router />
       </Provider>
     );
   }
