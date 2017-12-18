@@ -7,6 +7,14 @@ import CardSection from '../components/common/CardSection/CardSection';
 import Input from '../components/common/Input/Input';
 
 class EmployeeCreate extends Component {
+
+    createEmployee(){
+        const { name, phone, shift } = this.props;
+
+        this.props.employeeCreate({ name, phone, shift: shift || 'monday'})
+
+    }
+
     render(){
         return(
             <View>
@@ -46,7 +54,7 @@ class EmployeeCreate extends Component {
                     <CardSection>
                         <Button 
                             title="Create"
-                            onPress={() => console.log(this.props)}/>
+                            onPress={this.createEmployee.bind(this)}/>
                     </CardSection>
                 </Card>
             </View>
