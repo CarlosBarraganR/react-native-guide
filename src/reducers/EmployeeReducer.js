@@ -1,6 +1,6 @@
 import { 
     EMPLOYEE_UPDATE, 
-    EMPLOYEE_CREATE 
+    EMPLOYEE_CREATE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -10,7 +10,8 @@ const INITIAL_STATE = {
 } 
 
 export default (state = INITIAL_STATE, action) => {
-    console.log(state);
+    //console.log(state);
+    //console.log(action);
     switch(action.type){
         case EMPLOYEE_UPDATE:
             //[payload.state.prop] INTERPOLATION

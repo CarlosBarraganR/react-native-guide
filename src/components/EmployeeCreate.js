@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Picker, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { employeeUpdate, createEmployee } from '../actions';
 import Card from '../components/common/Card/Card';
 import CardSection from '../components/common/CardSection/CardSection';
 import Input from '../components/common/Input/Input';
@@ -70,4 +70,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, actions)(EmployeeCreate);
+export default connect(mapStateToProps, { employeeUpdate, createEmployee })(EmployeeCreate);
