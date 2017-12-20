@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { Actions } from 'react-native-router-flux';
 import { employeeFetch, emailChanged } from '../actions';
 import Card from '../components/common/Card/Card';
 
@@ -17,7 +18,14 @@ class EmployeeList extends Component {
             <View style={styles.listContainer}>
                     <FlatList
                         data={this.props.employees}
-                        renderItem={({item}) => <Text style={styles.item}>{item.name}</Text>}
+                        keyExtractor={(item, index) => item.id}
+                        renderItem={({item}) => {
+                            return(
+                                <TouchableOpacity onPress={() => Actions.employeeCreate()}>
+                                    <Text style={styles.item}>{item.name}</Text>
+                                </TouchableOpacity>
+                            );
+                        }}
                     />
             </View>
         );
