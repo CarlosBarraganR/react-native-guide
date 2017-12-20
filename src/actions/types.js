@@ -7,3 +7,5 @@ export const USER_LOGIN = 'user_login';
 export const EMPLOYEE_UPDATE = 'employee_update';
 export const EMPLOYEE_CREATE = 'employee_create';
 export const EMPLOYEE_FETCH = 'employee_fetch';
+export const EMPLOYEE_SET_DATA = 'employee_set_data';
+export const EMPLOYEE_EDIT = 'employee_edit';

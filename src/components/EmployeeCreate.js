@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Picker, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeUpdate, employeeCreate } from '../actions';
+import { employeeUpdate, employeeCreate, employeeSetData, employeeEdit } from '../actions';
 import Card from '../components/common/Card/Card';
 import CardSection from '../components/common/CardSection/CardSection';
 import Input from '../components/common/Input/Input';
 
 class EmployeeCreate extends Component {
 
-    createEmployee(){
+    componentWillMount() {
+        //console.log(this.props);
+         if(this.props.edit){
+             //WE CHANGE THE STATE WITH A NEW ACTION TO FILL THE INPUTS
+             //WITH THE EMPLOYEE DATA TO EDIT 
+             const { name, phone, shift } = this.props.employee;
+             this.props.employeeSetData({name, phone, shift });
+         }
+    }
+
+    createEmployee() {
         const { name, phone, shift } = this.props;
-
         this.props.employeeCreate({ name, phone, shift: shift || 'monday'})
+    }
 
+    editEmployee() {
+        const { name, phone, shift } = this.props;
+        this.props.employeeEdit({name, phone, shift, uid: this.props.employee.uid});
+    }
+
+    renderButtons() {
+        return !this.props.edit 
+        ?   <Button title="Create" onPress={this.createEmployee.bind(this)}/>
+        :   <View style={{flex: 1}}>
+                <Button title="Save" onPress={this.editEmployee.bind(this)}/>
+                <Button title="Delete" onPress={this.editEmployee.bind(this)}/>
+            </View>
     }
 
     render(){
@@ -52,9 +74,7 @@ class EmployeeCreate extends Component {
                     </CardSection>
 
                     <CardSection>
-                        <Button 
-                            title="Create"
-                            onPress={this.createEmployee.bind(this)}/>
+                        {this.renderButtons()}
                     </CardSection>
                 </Card>
             </View>
@@ -70,4 +90,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
+export default 
+connect(mapStateToProps, { employeeUpdate, employeeCreate, employeeSetData, employeeEdit })(EmployeeCreate);
