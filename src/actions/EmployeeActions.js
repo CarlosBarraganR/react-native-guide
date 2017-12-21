@@ -34,6 +34,19 @@ export const employeeEdit = ({ name, phone, shift, uid}) => {
     }
 }
 
+export const employeeRemove = (uid) => {
+    const { currentUser } = firebase.auth();
+
+    return(dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+            .remove()
+            .then(() => {
+                dispatch({ type: EMPLOYEE_CREATE });
+                Actions.main();
+            });
+    }
+}
+
 export const employeeCreate = ({ name, phone, shift }) => {
     const { currentUser } = firebase.auth();
 

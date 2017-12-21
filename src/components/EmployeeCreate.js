@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Picker, StyleSheet } from 'react-native';
+import { View, Text, Button, Picker, StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeUpdate, employeeCreate, employeeSetData, employeeEdit } from '../actions';
 import Card from '../components/common/Card/Card';
 import CardSection from '../components/common/CardSection/CardSection';
 import Input from '../components/common/Input/Input';
+import { 
+    employeeUpdate, 
+    employeeCreate, 
+    employeeSetData, 
+    employeeEdit,
+    employeeRemove
+} from '../actions';
 
 class EmployeeCreate extends Component {
 
@@ -33,7 +39,17 @@ class EmployeeCreate extends Component {
         ?   <Button title="Create" onPress={this.createEmployee.bind(this)}/>
         :   <View style={{flex: 1}}>
                 <Button title="Save" onPress={this.editEmployee.bind(this)}/>
-                <Button title="Delete" onPress={this.editEmployee.bind(this)}/>
+                <Button title="Delete" onPress={() => {
+                    Alert.alert(
+                        'Delete Employee',
+                        'Are you sure you want to delete ' + this.props.employee.name + '?',
+                        [
+                          {text: 'Cancel', onPress: () => null, style: 'cancel'},
+                          {text: 'OK', onPress: () => this.props.employeeRemove(this.props.employee.uid)},
+                        ],
+                        { cancelable: false }
+                      )
+                }}/>
             </View>
     }
 
@@ -90,5 +106,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default 
-connect(mapStateToProps, { employeeUpdate, employeeCreate, employeeSetData, employeeEdit })(EmployeeCreate);
+export default connect(mapStateToProps, 
+    { employeeUpdate, employeeCreate, employeeSetData, employeeEdit, employeeRemove })(EmployeeCreate);
